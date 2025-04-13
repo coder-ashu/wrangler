@@ -1,0 +1,150 @@
+
+✅ Useful Prompts for Building and Refining the Maven Project (pom.xml)
+=======================================================================
+
+🔧 SETUP & COMPATIBILITY
+------------------------
+
+1. Why are my JUnit 5 tests not running with Maven?
+   → Helped identify the need for maven-surefire-plugin version 3.x and the correct argLine for Java 17+.
+
+2. How do I configure Mockito with JUnit 5 in Maven?
+   → Guided addition of mockito-core and mockito-junit-jupiter dependencies.
+
+3. What plugins are needed to run JUnit 5 tests in Maven?
+   → Explained proper use of the Surefire plugin.
+
+
+📦 DEPENDENCY MANAGEMENT
+------------------------
+
+4. Which versions of Mockito should I use with Java 17 and JUnit 5?
+   → Helped ensure compatibility using newer versions.
+
+5. Can I use Powermock with Mockito and JUnit 5?
+   → Clarified potential issues and compatibility concerns.
+
+6. How do I prevent duplicate dependencies in Maven?
+   → Helped clean up multiple or conflicting dependency entries.
+
+
+🧪 TESTING & SCOPING
+--------------------
+
+7. Should test dependencies use <scope>test</scope> in Maven?
+   → Ensured separation of test and main dependencies.
+
+8. How can I avoid CDAP dependencies clashing with Hadoop/Hive?
+   → Led to using <exclusions> in the CDAP test dependencies.
+
+
+🔍 PLUGIN USAGE
+---------------
+
+9. How do I configure ANTLR and Checkstyle in Maven?
+   → Helped properly add antlr4-maven-plugin and fix maven-checkstyle-plugin config.
+
+10. How do I use the buildnumber-maven-plugin to include timestamps in the build?
+    → Added metadata like build time and user information.
+
+
+🔄 GENERAL CLEANUP
+------------------
+
+11. How do I define and use version properties in a parent POM?
+    → Encouraged use of ${guava.version}, ${protobuf.version} inside <properties> block.
+
+12. How can I avoid hardcoding versions in Maven?
+    → Suggested managing common versions from a central place.
+
+
+🛠️ Project Build and Debug Prompts
+==================================
+
+⏱️ Build Execution and Skipping Checks
+--------------------------------------
+
+- How do I rebuild the project from the root?
+  mvn clean install -Dcheckstyle.skip=true
+
+- I want to skip the Checkstyle check during Maven build.
+  → Use -Dcheckstyle.skip=true with your Maven command.
+
+- I made changes to pom.xml, what should I do next?
+  → Run mvn clean install from the root directory.
+
+
+📂 File System and Compilation Errors
+-------------------------------------
+
+- Where is the target directory and how do I delete it?
+  → Located at /target inside each module. Delete it manually or run mvn clean.
+
+- Why is my project failing to compile after deleting files?
+  → Likely because compiled .class files were deleted or source .java files were incomplete.
+
+- How do I rebuild the target directory?
+  → Run mvn clean install or mvn compile from the module root.
+
+- Which file should I restore from the GitHub repo to fix missing classes?
+  → Restore missing .java files like AvroSchemaGlossary.java, then rebuild.
+
+
+🧪 Testing Commands
+-------------------
+
+- How do I run a specific test file and skip Checkstyle?
+  mvn -Dtest=YourTestClassName test -Dcheckstyle.skip=true
+
+- How do I skip all Checkstyle validations but still run tests?
+  mvn test -Dcheckstyle.skip=true
+
+
+🌐 Git Configuration
+--------------------
+
+- How do I change the origin of a GitHub repo?
+  git remote set-url origin https://github.com/username/new-repo.git
+
+# Wrangler Project Test Execution Prompts
+
+## 1. Test Setup & Location
+"Show me where to place ByteSizeTest.java in the project structure"
+"Give me the complete directory path for AggregateStatsTest"
+"What's the correct package declaration for TimeDurationTest?"
+
+## 2. Test Execution Commands
+"Give me the command to run ByteSizeTest while skipping checkstyle"
+"How to run only TimeDurationTest with debug output"
+"Command to run all tests in wrangler-core module"
+"Syntax to run a specific test method in AggregateStatsTest"
+
+## 3. Error Resolution
+"What does 'No tests were executed' error mean and how to fix it?"
+"How to resolve Checkstyle validation failures for test files"
+"Fix 'cannot find symbol' errors in test classes"
+"Why am I getting RAT license check failures?"
+
+## 4. Configuration
+"Show me how to add JUnit 5 dependencies to pom.xml"
+"How to temporarily disable Checkstyle in Maven"
+"Update surefire plugin configuration for test detection"
+"Add license headers to test files automatically"
+
+## 5. Test Development
+"Give me a complete ByteSizeTest.java implementation"
+"Show me how to test invalid input cases in GrammarBasedParserTest"
+"Example test cases for time duration parsing"
+"How to write integration tests for AggregateStats directive"
+
+## 6. Debugging
+"How to see which tests Maven is detecting"
+"Show me the command to verify test class compilation"
+"How to check effective POM settings for tests"
+"Debug 'Test class not found' issues"
+
+## 7. Project Structure
+"What's the difference between wrangler-api and wrangler-core tests?"
+"Where should grammar parser tests be located?"
+"How to organize test files for directives vs parsers"
+
