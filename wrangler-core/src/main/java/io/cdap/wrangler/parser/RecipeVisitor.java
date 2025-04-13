@@ -317,6 +317,31 @@ public final class RecipeVisitor extends DirectivesBaseVisitor<RecipeSymbol.Buil
     return builder;
   }
 
+  
+/**
+ * A Directive can include a byte size field (e.g., "10MB", "512kb").
+ * This visitor method extracts the string, converts it to a {@link ByteSize} token,
+ * and adds it to the current directive's token group.
+ */
+@Override
+public RecipeSymbol.Builder visitByteSizeArg(DirectivesParser.ByteSizeArgContext ctx) {
+  builder.addToken(new io.cdap.wrangler.api.parser.ByteSize(ctx.getText()));
+  return builder;
+}
+
+/**
+ * A Directive can include a time duration field (e.g., "200ms", "1.5h").
+ * This visitor method extracts the string, converts it to a {@link TimeDuration} token,
+ * and adds it to the current directive's token group.
+ */
+@Override
+public RecipeSymbol.Builder visitTimeDurationArg(DirectivesParser.TimeDurationArgContext ctx) {
+  builder.addToken(new io.cdap.wrangler.api.parser.TimeDuration(ctx.getText()));
+  return builder;
+}
+
+
+
   private SourceInfo getOriginalSource(ParserRuleContext ctx) {
     int a = ctx.getStart().getStartIndex();
     int b = ctx.getStop().getStopIndex();

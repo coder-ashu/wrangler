@@ -140,8 +140,9 @@ numberRange
  ;
 
 value
- : String | Number | Column | Bool
+ : String | Number | Column | Bool 
  ;
+
 
 ecommand
  : '!' Identifier
@@ -311,3 +312,40 @@ fragment Int
 fragment Digit
  : [0-9]
  ;
+
+
+byteSizeArg : BYTE_SIZE ;
+timeDurationArg : TIME_DURATION ;
+
+
+ BYTE_SIZE
+ : Int ('.' Digit+)? BYTE_UNIT
+ ;
+
+TIME_DURATION
+ : Int ('.' Digit+)? TIME_UNIT
+ ;
+
+// Fragments to support unit suffixes
+
+fragment BYTE_UNIT
+ : ('B' | 'b'
+ | 'KB' | 'kb' | 'Kb' | 'kB'
+ | 'MB' | 'mb' | 'Mb' | 'mB'
+ | 'GB' | 'gb' | 'Gb' | 'gB'
+ | 'TB' | 'tb' | 'Tb' | 'tB')
+ ;
+
+
+fragment TIME_UNIT
+ : ('ms' | 'MS' | 'Ms' | 'mS'
+ | 's'  | 'S'
+ | 'sec' | 'SEC' | 'Sec' | 'sEc' | 'seC' | 'SEc' | 'SeC' | 'sEC'
+ | 'm' | 'M'
+ | 'min' | 'MIN' | 'Min' | 'mIn' | 'miN' | 'MIn' | 'MiN' | 'mIN'
+ | 'h' | 'H'
+ | 'hr' | 'HR' | 'Hr' | 'hR')
+ ;
+
+
+

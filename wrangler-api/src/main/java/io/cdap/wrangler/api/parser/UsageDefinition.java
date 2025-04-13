@@ -54,6 +54,7 @@ public final class UsageDefinition implements Serializable {
     this.optionalCnt = optionalCnt;
   }
 
+
   /**
    * Returns the name of the directive for which the this <code>UsageDefinition</code>
    * object is created.
